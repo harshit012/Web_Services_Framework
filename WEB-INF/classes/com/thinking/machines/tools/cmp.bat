@@ -1,0 +1,1 @@
+javac -classpath c:\itext\*;c:\tomcat9\webapps\TMWebRock\WEB-INF\classes;. *.java

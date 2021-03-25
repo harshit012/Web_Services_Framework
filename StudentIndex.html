@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<title>JSON_DATA_SHARING_EXAMPLE</title>
+<script src='jquery/jquery.js'></script>
+<script src='getJavaScript?name=abcd.js'></script>
+<script>
+
+function addStudent(frm)
+{
+var rollNumber=frm.rollNumber.value.trim();
+var name=frm.name.value.trim();
+var gender=frm.gender.value.trim();
+var student=new Student();
+student.rollNumber=rollNumber;
+student.name=name;
+student.gender=gender;
+var studentService=new StudentService();
+studentService.add(student).then(function(result){
+if(result.isSuccessful)
+{
+alert("Student data saved successfully");
+}else
+{
+alert(result.exception.detailMessage);
+}
+},function(error){
+alert("reject1:"+error);
+});
+return false;
+}
+
+
+function updateStudent(frm)
+{
+var rollNumber=frm.rollNumber.value.trim();
+var name=frm.name.value.trim();
+var gender=frm.gender.value.trim();
+var student=new Student();
+student.rollNumber=rollNumber;
+student.name=name;
+student.gender=gender;
+var studentService=new StudentService();
+studentService.update(student).then(function(result){
+if(result.isSuccessful)
+{
+alert("Student data updated successfully");
+}else
+{
+alert(result.exception.detailMessage);
+}
+},function(error){
+alert("reject2:"+error);
+});
+return false;
+}
+
+function deleteStudent(frm)
+{
+var rollNumber=frm.rollNumber.value.trim();
+var studentService=new StudentService();
+studentService.delete(rollNumber).then(function(result){
+if(result.isSuccessful)
+{
+alert("Student deleted successfully");
+}else
+{
+alert(result.exception.detailMessage);
+}
+},function(error){
+alert("reject3:"+error);
+});
+return false;
+}
+
+function getByRollNumber(frm)
+{
+var rollNumber=frm.rollNumber.value.trim();
+var studentService=new StudentService();
+studentService.getByRollNumber(rollNumber).then(function(result){
+if(result.isSuccessful)
+{
+var student=result.result;
+alert("Roll Number:"+student.rollNumber+" , Student Name:"+student.name+" , Gender:"+student.gender);
+}else
+{
+alert(result.exception.detailMessage);
+}
+},function(error){
+alert("reject:"+error);
+});
+return false;
+}
+
+function getAllStudents()
+{
+var studentService=new StudentService();
+studentService.getAll().then(function(result){
+alert("resolve:"+result);
+},function(error){
+alert("reject:"+error);
+});
+return false;
+}
+
+</script>
+</head>
+<body>
+<div id='addStudentDivision'>
+<form action="#" onsubmit='return addStudent(this)'>
+rollNumber: <input type='number' name='rollNumber' id='rollNumber'>
+Name : <input type='text' name='name' id='name'>
+Gender : <input type='text' name='gender' id='gender' maxlength='1'>
+<button type='submit'>Add Student</button>
+</form><br>
+</div>
+<div id='updateStudentDivision'>
+<form action="#" onsubmit='return updateStudent(this)'>
+rollNumber: <input type='number' name='rollNumber' id='rollNumber'>
+Name : <input type='text' name='name' id='name'>
+Gender : <input type='text' name='gender' id='gender' maxlength='1'>
+<button type='submit'>Update Student</button>
+</form><br>
+</div>
+<div id='deleteStudentDivision'>
+<form action="#" onsubmit='return deleteStudent(this)'>
+rollNumber: <input type='number' name='rollNumber' id='rollNumber'>
+<button type='submit'>Delete Student</button>
+</form><br>
+</div>
+<div id='getByRollNumberDivision'>
+<form action="#" onsubmit='return getByRollNumber(this)'>
+rollNumber: <input type='number' name='rollNumber' id='rollNumber'>
+<button type='submit'>Get Student by rollNumber</button>
+</form><br>
+</div>
+<div id='getAllDivisionDivision'>
+<button onclick='getAllStudents()'>List of Students</button>
+</div>
+
+</body>
+</html>
