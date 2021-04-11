@@ -89,4 +89,41 @@ return "Successfully added";
 ```
 Example url to access add service http://localhost:8080/"user's-application-context-name"/"user's-entity-name"/employee/add?username=Harshit+Choukse&gender=male&indian=true & then the add method got invoked with the appropriate arguments.
 
+3. @SecuredAccess(checkPost="bobby.Security.ValidateUser",guard="checkUser")
+
+   By using this annotation user dont have to write verification code for every service that need to be secured,user can just apply this annotation to all the services that are    needed to be secured from unidentified access. SecuredAccess annotation can only be applied on Service/Method.
+   
+   * checkPost = full classname(with package) to your verification class.
+   * guard = method name of verification class.
+
+Example:-
+```
+import com.thinking.machines.webrock.annotations.*;
+@Path("/employee")
+public class Employee
+{
+@Path("/get")
+@SecuredAccess(checkPost="bobby.Security.ValidateUser",guard="checkUser")
+public String getAadharCardNumber()
+{
+int aadhar=0;
+//code to get adhar card in ;
+return aadhar;
+}
+}
+```
+
+4. @Forward("/employee/view")
+
+   Using this annotation user can forward request to another web service or to some client side technology like (jsp file/ html file) .The example below shows, How to use forward annotaton to forward request to other service "/employee/view",you can also forward to some JSP also.by giving JSP file name as value of forward annotation. Forward annotation can only be applied on Services(Method which has path annotation applied on it).
+ 
+5. @Get
+
+   By using this annotation user is declaring that only GET type request allowed for this service. Get annotation can be applied to both class and method. If this annotation is    applied on class then all the services inside that class can only accept GET type request. 
+  
+6. @Post
+
+   Similarly as Get annotation, Post annotation can be used for allowing POST type request. and it can also applied on both class and method.
+
+If neither Get nor Post annotation is applied on method then both GET and POST type requests allowed. 
 
