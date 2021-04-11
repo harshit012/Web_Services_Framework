@@ -48,3 +48,45 @@ Now the web.xml has been configured.
 5 -> Now copy all files inside Dependencies folder and paste them inside tomcat9/lib/. these are all the files you will ever need to create a web service. Our framework is Dependent on some of the these files. some of the jar file may already be present there you can skip those files.
 
 6 -> You are done setting up the environment,now you can use the frameWork easily.
+
+## Tutorials and reference documentation:
+1. @Path("/employee")
+
+   Path annotation can be applied on class and method. The value of this annotation should always starts with front Slash followed by path.
+
+   Example:-
+```
+import com.thinking.machines.webrock.annotations.*;
+@Path("/employee")
+public class Employee
+{
+@Path("/add")
+public void add()
+{
+System.out.println("Employee added");
+}
+}
+```
+   user can access this service by sending request to "User's entity name"/employee/view.
+   
+2. @RequestParameter("username").
+
+   RequestParameter annotation can only be applied on Parameters. User is supposed to apply Request Parameter annotation on all the primitive types. User is not supposed to define a service which has more than one complex parameter type beacuse it may be ambigious when the request is of JSON type & user do not need to apply this annotation in complex data type. By this annotation the framework get to know that the service which is going to invoke is the correct one or not.
+   
+   Example:-
+```
+import com.thinking.machines.webrock.annotations.*;
+@Path("/employee")
+public class Employee
+{
+@Path("/add")
+public String add(@RequestParameter("username") String name,@RequestParameter("gender") String gender,@RequestParameter("indian") boolean indian)
+{
+System.out.println(name+"----"+gender+"-----"+indian);
+return "Successfully added";
+}
+}
+```
+Example url to access add service http://localhost:8080/"user's-application-context-name"/"user's-entity-name"/employee/add?username=Harshit+Choukse&gender=male&indian=true & then the add method got invoked with the appropriate arguments.
+
+
