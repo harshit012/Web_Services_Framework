@@ -50,7 +50,7 @@ Now the web.xml has been configured.
 6 -> You are done setting up the environment,now you can use the frameWork easily.
 
 ## Tutorials and reference documentation:
-1. @Path("/employee")
+**1. @Path("/employee")**
 
    Path annotation can be applied on class and method. The value of this annotation should always starts with front Slash followed by path.
 
@@ -69,7 +69,7 @@ System.out.println("Employee added");
 ```
    user can access this service by sending request to "User's entity name"/employee/view.
    
-2. @RequestParameter("username").
+**2. @RequestParameter("username").**
 
    RequestParameter annotation can only be applied on Parameters. User is supposed to apply Request Parameter annotation on all the primitive types. User is not supposed to define a service which has more than one complex parameter type beacuse it may be ambigious when the request is of JSON type & user do not need to apply this annotation in complex data type. By this annotation the framework get to know that the service which is going to invoke is the correct one or not.
    
@@ -89,7 +89,7 @@ return "Successfully added";
 ```
 Example url to access add service http://localhost:8080/"user's-application-context-name"/"user's-entity-name"/employee/add?username=Harshit+Choukse&gender=male&indian=true & then the add method got invoked with the appropriate arguments.
 
-3. @SecuredAccess(checkPost="bobby.Security.ValidateUser",guard="checkUser")
+**3. @SecuredAccess(checkPost="bobby.Security.ValidateUser",guard="checkUser")**
 
    By using this annotation user dont have to write verification code for every service that need to be secured,user can just apply this annotation to all the services that are    needed to be secured from unidentified access. SecuredAccess annotation can only be applied on Service/Method.
    
@@ -113,15 +113,15 @@ return aadhar;
 }
 ```
 
-4. @Forward("/employee/view")
+**4. @Forward("/employee/view")**
 
    Using this annotation user can forward request to another web service or to some client side technology like (jsp file/ html file) .The example below shows, How to use forward annotaton to forward request to other service "/employee/view",you can also forward to some JSP also.by giving JSP file name as value of forward annotation. Forward annotation can only be applied on Services(Method which has path annotation applied on it).
  
-5. @Get
+**5. @Get**
 
    By using this annotation user is declaring that only GET type request allowed for this service. Get annotation can be applied to both class and method. If this annotation is    applied on class then all the services inside that class can only accept GET type request. 
   
-6. @Post
+**6. @Post**
 
    Similarly as Get annotation, Post annotation can be used for allowing POST type request. and it can also applied on both class and method.
 
@@ -162,11 +162,11 @@ If you want to use web application scopes . You can simply use these classes. Al
 
 For all the three classes there are three annotations:
 
-7. @InjectApplicationScope
+**7. @InjectApplicationScope**
 
-8. @InjectSessionScope
+**8. @InjectSessionScope**
 
-9. @InjectRequestScope
+**9. @InjectRequestScope**
 
 Example
 
@@ -217,7 +217,7 @@ applicationScope.setAttribute("bulb_data",this.bulb);
 
 **Similarly, The code can be written for RequestScope & SessionScope**
 
-10.@InjectApplicationDirectory
+**10.@InjectApplicationDirectory**
    If you wanted to get the working directory of your project then you have to apply this annotation on class. The class should contain a field of type ApplicationDirectory & the necessary setter method. The way of writing code is as same as the above code.
    
 The Class ApplicationDirectory has only one method:
