@@ -127,3 +127,93 @@ return aadhar;
 
 If neither Get nor Post annotation is applied on method then both GET and POST type requests allowed. 
 
+Example :-
+```
+import com.thinking.machines.webrock.annotations.*;
+@Path("/employee")
+@Get
+public class Employee
+{
+@Path("/add")
+@Get
+@Forward("/employee/view")
+public String add(@RequestParameter("username") String name,@RequestParameter("gender") String gender,@RequestParameter("indian") boolean indian)
+{
+System.out.println(name+"----"+gender+"-----"+indian);
+return "Add model service Used";
+}
+
+@Path("/view")
+public void view()
+{
+System.out.println("View Service");
+}
+}
+```
+
+**Framework provides three classes:**
+* RequestScope
+* SessionScope
+* ApplicationScope
+
+If you want to use web application scopes . You can simply use these classes. All the above classes has two methods below methods.
+*  void setAttribute(String key,Object value);
+*  Object getAttribute(String key);
+
+For all the three classes there are three annotations:
+
+7. @InjectApplicationScope
+
+8. @InjectSessionScope
+
+9. @InjectRequestScope
+
+Example
+
+```
+package bobby.test;
+import com.thinking.machines.webrock.annotations.*;
+import com.thinking.machines.webrock.pojo.*;
+@InjectApplicationScope
+public class ABCD
+{
+private Bulb bulb;
+private ApplicationScope applicationScope;
+@Path("/sam")
+public void sam()
+{
+this.bulb=new Bulb();
+this.bulb.setWattage(50);
+this.applicationScope.setAttribute("bulb_data",this.bulb);
+}
+public void setApplicationScope(ApplicationScope applicationScope)
+{
+this.applicationScope=applicationScope;
+}
+}
+```
+The class ABCD requires application scope. For that, the user has to declare a field of type ApplicationScope along with the setter method as shown in the above code. Whenever there is a request arrived for sam, then before the invocation of sam service the setApplicationScope method got invoked.
+
+Similarly, The code can be written for RequestScope & SessionScope
+
+Note: All this three class are in package : com.thinking.machines.webrock.pojo.*;
+
+There is also a alternative approach to write that code. Instead of applying the InjectApplicationScope on that class you can simply introduce one more parameter in sam method of type Application Scope, As shown below in code.
+
+```
+package bobby.test;
+import com.thinking.machines.webrock.annotations.*;
+import com.thinking.machines.webrock.pojo.*;
+public class ABCD
+{
+private Bulb bulb;
+private ApplicationScope applicationScope;
+@Path("/sam")
+public void sam(ApplicationScope applicationScope)
+{
+this.bulb=new Bulb();
+this.bulb.setWattage(50);
+applicationScope.setAttribute("bulb_data",this.bulb);
+}
+}
+```
