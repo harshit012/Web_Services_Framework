@@ -218,7 +218,8 @@ applicationScope.setAttribute("bulb_data",this.bulb);
 **Similarly, The code can be written for RequestScope & SessionScope**
 
 **10.@InjectApplicationDirectory**
-   If you wanted to get the working directory of your project then you have to apply this annotation on class. The class should contain a field of type ApplicationDirectory & the necessary setter method. The way of writing code is as same as the above code.
+
+   If you wanted to get the working directory of your project then you have to apply this annotation on class. The class should contain a field of type ApplicationDirectory &      the necessary setter method. The way of writing code is as same as the above code.
    
 The Class ApplicationDirectory has only one method:
 * File getDirectory(); 
@@ -259,4 +260,92 @@ System.out.println("Current Directory:"+this.applicationDirectory.getRealPath())
 }
 }
 ```
+
+**11. @InjectRequestParameter("gender")**
+
+   This annotation is same as RequestParameter annotation but unlike it applied on class properties. It simply work similar as RequestParameter but benefit of using this            annotation was that if some data is arriving through query string and more than one service required that same data then instead of using applying RequestParameter annotation    on each services user can use InjectRequestParameter on that field, which is accessible to all services.
+ 
+ Example:-
+```
+import com.thinking.machines.webrock.annotations.*;
+@Path("/employee")
+public class EmployeeManager
+{
+@InjectRequestParameter("empId")
+private int empId;
+@Path("/getByEmployeeId")
+public Employee getByEmployeeId()
+{
+int empId=this.empId;
+//code to search the employee in Database
+Employee emp=new Employee;
+return emp;
+}
+@Path("/delete")
+public void delete()
+{
+int empId=this.empId;
+//code to delete empId from database;
+}
+public void setEmpid(int empId)
+{
+this.empId=empId;
+}
+}
+```
+Here, In the above code whenever the request is arrived for any service in EmployeeManager class then At First, the data is extracted from query string & setEmpId got invoked & after that the appropriate service got invoked.
+
+**12. @OnStartup(priority=1)**
+
+   If you wanted to invoke the service when the server get started then you can apply this annotation on that service. This annotation can only be applied on method/service. If    user wants to invoke more than one service at startup of server then he should mention the priority of invocation of services. Service with lesser priority number will be        called first.
+
+Example :-
+```
+package bobby.test;
+import com.thinking.machines.webrock.annotations.*;
+import com.thinking.machines.webrock.pojo.*;
+public class ABCD
+{
+private Bulb bulb;
+@Startup(PRIORITY=1)
+public void sam(ApplicationScope applicationScope)
+{
+this.bulb=new Bulb();
+this.bulb.setWattage(50);
+applicationScope.setAttribute("bulb_data",this.bulb);
+}
+}
+```
+Note: You are not supposed to apply Path annotation with startup annotation. you cannot use RequestScope or SessionScope as a parameter. you can only use ApplicationScope as a parameter.
+
+**13. @AutoWired(name="username")**
+
+   AutoWired annotation can only be applied on properties of a service class. User apply these annotation when he/she wants that the value against 'name' property of AutoWired     annotation should setted to that property on which annotation applied and value will be extracted from scopes (request scope > session scope > application scope). Setter        method should be present for that property so that value can be setted.
+
+i.e. order of finding the value against value of name field of annotation was - Request scope -> Session scope -> Application scope.
+
+Example :-
+```
+import com.thinking.machines.webrock.annotations.*;
+@Path("/employee")
+public class Employee
+{
+@AutoWired(name="username")
+private String name;
+public void setName(String name)
+{
+this.name=name;
+}
+@Path("/get")
+public String getName()
+{
+System.out.print("Name of employee: ");
+System.out.println(this.name);
+return this.name;
+}
+}
+```
+If the username key is exists in any of these scope then its value will be assigned to name attribute of Employee class.
+
+
 
