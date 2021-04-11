@@ -194,8 +194,6 @@ this.applicationScope=applicationScope;
 ```
 The class ABCD requires application scope. For that, the user has to declare a field of type ApplicationScope along with the setter method as shown in the above code. Whenever there is a request arrived for sam, then before the invocation of sam service the setApplicationScope method got invoked.
 
-Similarly, The code can be written for RequestScope & SessionScope
-
 Note: All this three class are in package : com.thinking.machines.webrock.pojo.*;
 
 There is also a alternative approach to write that code. Instead of applying the InjectApplicationScope on that class you can simply introduce one more parameter in sam method of type Application Scope, As shown below in code.
@@ -207,7 +205,6 @@ import com.thinking.machines.webrock.pojo.*;
 public class ABCD
 {
 private Bulb bulb;
-private ApplicationScope applicationScope;
 @Path("/sam")
 public void sam(ApplicationScope applicationScope)
 {
@@ -217,3 +214,49 @@ applicationScope.setAttribute("bulb_data",this.bulb);
 }
 }
 ```
+
+**Similarly, The code can be written for RequestScope & SessionScope**
+
+10.@InjectApplicationDirectory
+   If you wanted to get the working directory of your project then you have to apply this annotation on class. The class should contain a field of type ApplicationDirectory & the necessary setter method. The way of writing code is as same as the above code.
+   
+The Class ApplicationDirectory has only one method:
+* File getDirectory(); 
+
+Example:
+```
+package bobby.test;
+import com.thinking.machines.webrock.annotations.*;
+import com.thinking.machines.webrock.pojo.*;
+@InjectApplicationDirectory
+public class ABCD
+{
+private Bulb bulb;
+private ApplicationDirectory applicationDirectory;
+@Path("/sam")
+public void sam()
+{
+System.out.println("Current Directory:"+this.applicationDirectory.getRealPath());
+}
+public void setApplicationDirectory(ApplicationDirectory applicationDirectory)
+{
+this.applicationDirectory=applicationDirectory;
+}
+}
+```
+Or
+```
+package bobby.test;
+import com.thinking.machines.webrock.annotations.*;
+import com.thinking.machines.webrock.pojo.*;
+public class ABCD
+{
+private Bulb bulb;
+@Path("/sam")
+public void sam(ApplicationDirectory applicationDirectory)
+{
+System.out.println("Current Directory:"+this.applicationDirectory.getRealPath());
+}
+}
+```
+
