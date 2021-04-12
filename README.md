@@ -371,4 +371,4 @@ I have created some exceptions ,so that user get to know the faults in his/her W
 |PathNotApplied|This is thrown to indicate that, The Path annotation must be applied on the service.|
 |ServiceNotAllowed|This is thrown when the request type do not match.|
 |PackagePrefixNotFound|This is raised when the package prefix is not mentioned in web.xml.|
-|AmbigiousRequestType|"This is thrown when the GET & POST Annotation applied on same service."|
+|AmbigiousRequestType|This is thrown when the GET & POST Annotation applied on same service.|
