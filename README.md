@@ -49,7 +49,9 @@ Now the web.xml has been configured.
 
 6 -> You are done setting up the environment,now you can use the frameWork easily.
 
-## Tutorials and reference documentation:
+
+# Tutorials and reference documentation:
+## Annotations:
 **1. @Path("/employee")**
 
    Path annotation can be applied on class and method. The value of this annotation should always starts with front Slash followed by path.
@@ -346,6 +348,27 @@ return this.name;
 }
 ```
 If the username key is exists in any of these scope then its value will be assigned to name attribute of Employee class.
+___________________________________________________________________________________________________________
+
+## Exceptions:
+
+I have created some exceptions ,so that user get to know the faults in his/her Web-Application.
 
 
-
+|       Exception       |                      Description                      |
+| ----------------------| ----------------------------------------------------- |
+|    SetterNotFound     | This Exception is raised when the definition of setter method is not found.|
+|GaurdNotFound|When SecuredAccess Annotation is applied on any class and the method, act as a guard is not found.|
+|PostNotFound|When SecuredAccess Annotation is applied on any class and the Class, act as a post is not found.|
+|ServiceNotFound|It is thrown when accessing a service which is not found.|
+|ServiceClassNotFound|This exception is raised when accessing a class having Path annotion on it, is not found|
+|BaseURLPatternNotFound|It is thrown when base URL is not provided in web.xml.|
+|InvalidMethodParameters|It is thrown when the number of parameters is out of range or the type of the parameters is not according to the specified guidelines.|
+|InvalidServiceParameters|This is raised when the service does not follow the specified guidelines to declare parameter variables.|
+|ServiceInvocation|This is thrown when the invoked service throws an exception.|
+|IllegalServiceAccess|This is thrown when the access of method is not according to the specified guidelines.|
+|ServiceClassInstantiation|This is raised when the class is not instantiable.|
+|PathNotApplied|This is thrown to indicate that, The Path annotation must be applied on the service.|
+|ServiceNotAllowed|This is thrown when the request type do not match.|
+|PackagePrefixNotFound|This is raised when the package prefix is not mentioned in web.xml.|
+|AmbigiousRequestType|"This is thrown when the GET & POST Annotation applied on same service."|
