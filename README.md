@@ -7,6 +7,7 @@ This is the java based Web Services Framework, which provides an easier and fast
 * No need to do url mappings in XML file. (deployment descriptor)
 * User don't need to worry about GET/POST request and how to Handle them.
 * The user can easily send/receive the data from client-side to server-side without writing the single line of code of JSON parsing.
+* Well-defined Documentation (PDF) will be provided to the user, Which contains the structure of all the Service & Pojo classes. The documentation also consists of short explanation about the exceptions.
 
 
 ## How to use this framework?
