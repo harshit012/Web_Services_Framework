@@ -1,5 +1,5 @@
 # Web-Services-Framework
-This is the java based Web Services Framework, which provides an easier and faster way to set up, configure, and create the backend/serverside of the web-application. Now the user do not need to worry about servlets or the configuration of web.xml anymore. 
+This is the java based Web Services Framework, which provides an easier and faster way to set up, configure, and create the backend/serverside of the web-application. Now the user does not need to worry about servlets or the configuration of web.xml anymore. 
 
 ## Why to use this framework?
 * No need to write the code for servlet classes.
@@ -11,6 +11,9 @@ This is the java based Web Services Framework, which provides an easier and fast
 
 
 ## How to use this framework?
+
+### Setting up basic enviroment.
+
 1 -> Download web_services.jar file.
 
 2 -> Cut/Copy that jar file to tomcat9/webapps/'Project_Name'/WEB-INF/lib/;
@@ -50,6 +53,45 @@ Now the web.xml has been configured.
 
 6 -> You are done setting up the environment,now you can use the frameWork easily.
 
+### Some Advance features :
+### To dynamically generate JavaScript file
+
+1-> You need to add two more param-name in web.xml as shown below.
+```
+<init-param>
+<param-name>JS_FILE_NAME</param-name>
+<param-value>abcd.js</param-value>
+</init-param>
+<init-param>
+<param-name>BASE_URL_PATTERN</param-name>
+<param-value>/schoolService</param-value>
+</init-param>
+```
+
+* You need to specify the name for the dynamically generated js file as param-value of param-name "JS_FILE_NAME"
+* The second param-name is BASE_URL_PATTERN in which you have to set the same URL pattern as you set previously.
+
+**Note: If you don't mention any name for javasript file, then for each service class the separate javascript file will be created.**
+____________________________________________________________________________________________________
+
+### To generate documentation
+I've provided a tool in my framework to generate the documentation.
+package name: com.thinking.machines.tools.DocumentCreator
+You have to pass two things as command line argument 
+* First argument : Path where pdf will be saved.
+* Second arguement : The Path to the folder where package exists
+
+Along with that you also need to mention all the jar files location in classpath.
+
+like in my case.
+
+I'm in some xyz folder currently, Then I need to write:
+```
+java -classpath c:\tomcat9\webapps\Web_Services\WEB-INF\lib;c:\tomcat9\webapps\Web_Services\WEB-INF\classes;c:\tomcat9\lib\*;. DocumentGenerator sample.pdf c:\tomcat9\webapps\Web_Services\WEB-INF\classes\
+```
+The pdf will be created in xyz folder or in the current folder
+
+_____________________________________________________________________________________________________________________________________
 
 # Tutorials and reference documentation:
 ## Annotations:
