@@ -94,11 +94,12 @@ The pdf will be created in xyz folder or in the current folder
 _____________________________________________________________________________________________________________________________________
 
 # Tutorials and reference documentation:
+For the convenience of users, I've created some custom annotations which can be applied on services. The user has to follow the specified guidelines regarding annotations mentioned below. If the user does not follow the guidelines then Service Exception will be raised.
 ## Annotations:
 **1. @Path("/employee")**
 
-   Path annotation can be applied on class and method. The value of this annotation should always starts with front Slash followed by path.
-
+   Path annotation can be applied on class and method. The value of this annotation should always starts with front Slash followed by path. The user has to follow the guidelines
+regarding each annotation mentioned below. If user does not follows the guidelines then Service Exception is raised.
    Example:-
 ```
 import com.thinking.machines.webrock.annotations.*;
