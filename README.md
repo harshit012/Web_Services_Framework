@@ -1,7 +1,7 @@
 # Web-Services-Framework
 This is the java based Web Services Framework, which provides an easier and faster way to set up, configure, and create the backend/serverside of the web-application. Now the user does not need to worry about servlets or the configuration of web.xml anymore. 
 
-## Why to use this framework?
+## Why to use this Framework?
 * No need to write the code for servlet classes.
 * The framework generates a javascript file, Which contains the necessary implementation of all the service classes at backend/serverside.
 * No need to do url mappings in XML file. (deployment descriptor)
@@ -10,9 +10,9 @@ This is the java based Web Services Framework, which provides an easier and fast
 * Well-defined Documentation (PDF) will be provided to the user, Which contains the structure of all the Service & Pojo classes. The documentation also consists of short explanation about the exceptions.
 
 
-## How to use this framework?
+## How to use this Framework?
 
-### Setting up basic enviroment.
+### Setting up the environment.
 
 1 -> Download web_services.jar file.
 
