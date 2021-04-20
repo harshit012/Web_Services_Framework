@@ -265,10 +265,9 @@ applicationScope.setAttribute("bulb_data",this.bulb);
 
 **10.@InjectApplicationDirectory**
 
-   If you wanted to get the working directory of your project then you have to apply this annotation on class. The class should contain a field of type ApplicationDirectory &      the necessary setter method. The way of writing code is as same as the above code.
+   If you want to get the path of working directory, then you have to apply this InjectApplicationDirectory annotation on the class. The class should have a field of type ApplicationDirectory &  the appropriate setter method for that field. The way of writing the code is as same as the previous code.
    
-The Class ApplicationDirectory has only one method:
-* File getDirectory(); 
+The Class ApplicationDirectory has only one method: i.e.  File getDirectory(); 
 
 Example:
 ```
@@ -309,7 +308,7 @@ System.out.println("Current Directory:"+this.applicationDirectory.getRealPath())
 
 **11. @InjectRequestParameter("gender")**
 
-   This annotation is same as RequestParameter annotation but unlike it applied on class properties. It simply work similar as RequestParameter but benefit of using this            annotation was that if some data is arriving through query string and more than one service required that same data then instead of using applying RequestParameter annotation    on each services user can use InjectRequestParameter on that field, which is accessible to all services.
+   This annotation is same as RequestParameter annotation, but unlike it is applied on class properties. It works same as RequestParameter. The benefit of using this            annotation is that, If some data is arriving through query string & more than one service of a particular class requires that data then instead of applying RequestParameter annotation, The  user can apply InjectRequestParameter annotation on that declared field, which is accessible to all services.
  
  Example:-
 ```
@@ -339,11 +338,13 @@ this.empId=empId;
 }
 }
 ```
-Here, In the above code whenever the request is arrived for any service in EmployeeManager class then At First, the data is extracted from query string & setEmpId got invoked & after that the appropriate service got invoked.
+Here, In the above code whenever the request arrives for any service in EmployeeManager class then At First, The data is extracted from query string & setEmpId method got invoked & after that the appropriate service got invoked.
+
+If the user does not define the setter method, then method not found exception will be raised.
 
 **12. @OnStartup(priority=1)**
 
-   If you wanted to invoke the service when the server get started then you can apply this annotation on that service. This annotation can only be applied on method/service. If    user wants to invoke more than one service at startup of server then he should mention the priority of invocation of services. Service with lesser priority number will be        called first.
+   If you want to invoke the service when the starts, then you can apply this annotation on that service. This annotation can only be applied on method/service. If user wants to invoke more than one service at startup of the server, then user should mention the priority of invocation of the services. Service with lesser priority numbers will be invoked first.
 
 Example :-
 ```
@@ -364,11 +365,11 @@ applicationScope.setAttribute("bulb_data",this.bulb);
 ```
 Note: You are not supposed to apply Path annotation with startup annotation. you cannot use RequestScope or SessionScope as a parameter. you can only use ApplicationScope as a parameter.
 
-**13. @AutoWired(name="username")**
+**13. @AutoWired(name="<key name>")**
 
-   AutoWired annotation can only be applied on properties of a service class. User apply these annotation when he/she wants that the value against 'name' property of AutoWired     annotation should setted to that property on which annotation applied and value will be extracted from scopes (request scope > session scope > application scope). Setter        method should be present for that property so that value can be setted.
+  AutoWired annotation can only be applied on properties of a service class. This annotation is used for binding the properties. If some data has been stored in some scope as key value pair. If the user wants that data, So, according to the key name the data will be extracted from the appropriate scope as value & that value will be assigned to the property which has AutoWired annotation applied on it. Setter method should be present for that property so that value can be setted. If the setter method is not found, then SetterNotFound Exception will be raised.
 
-i.e. order of finding the value against value of name field of annotation was - Request scope -> Session scope -> Application scope.
+i.e. order of finding the value in the scope is: - Request scope -> Session scope -> Application scope.
 
 Example :-
 ```
@@ -390,13 +391,13 @@ System.out.println(this.name);
 return this.name;
 }
 }
-```
-If the username key is exists in any of these scope then its value will be assigned to name attribute of Employee class.
+``` 
+If the username key exists in any of these scope, then its value will be assigned to name attribute of Employee class.
 ___________________________________________________________________________________________________________
 
 ## Exceptions:
 
-I have created some exceptions ,so that user get to know the faults in his/her Web-Application.
+I have created some exceptions ,so that user get to know the faults in the Web-Application.
 
 
 |       Exception       |                      Description                      |
